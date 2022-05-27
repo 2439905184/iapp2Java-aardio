@@ -1,0 +1,26 @@
+﻿namespace tokenizer
+{
+    import console;
+    import string;
+    import table;
+    
+	function split_head(param_str)
+	{
+    	//使用正则分割
+		var table_token = string.splitEx(param_str,"\(|\)")
+		
+		
+		var space_params = string.replace(table_token[2],","," ")
+		var function_name = table_token[1]
+		var function_params = string.splitEx(space_params,"\s+")
+		
+		var result = {}
+		result['function_name'] = function_name
+		result['function_params'] = function_params
+		result['params_length'] = table.len(function_params)
+		
+		return result
+	}
+	//var a = split_head("a(1,2,3,4)")
+	//console.log(table.tostring(a))
+}

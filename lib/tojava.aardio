@@ -1,0 +1,21 @@
+﻿namespace tojava
+{
+	function head_to_java(syntax_data)
+	{
+		function_name = syntax_data['function_name']
+		function_params = syntax_data['function_params']
+		params_length = syntax_data['params_length']
+		if(function_name == "cls")
+		{
+			if(params_length == 2)
+			{
+				class_name = function_params[1]
+            	return_var = function_params[2]
+            	syntax1 = "Class " + return_var + " = "
+            	syntax2 = "getClass().forName(" + class_name +")"
+            	java_code = syntax1 + syntax2 + ";"
+			}
+			return java_code
+		}
+	}
+}

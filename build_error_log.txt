@@ -1,0 +1,9 @@
+﻿错误发生在文件---------------:
+D:\工作台\010 收集箱\aardio\project\iapp2Java-aardio\main.aardio
+错误信息---------------:
+
+{Error}:
+{Line}:#22
+{File}:D:\工作台\010 收集箱\aardio\project\iapp2Java-aardio\main.aardio
+{Error}:<unexpected symbol>
+{Near}:'\'

@@ -1,0 +1,29 @@
+import console;
+import fsys;
+import fsys.file;
+import io;
+import tokenizer;
+import tojava;
+
+console.setTitle("iapp2Java-compiler");
+/*var result = tokenizer.split_head("a(1,2,3,4)")
+console.log(table.tostring(result))*/
+function main()
+{
+    var arg = _ARGV
+    //~\表示exe同一目录下
+    var output_file = fsys.file("~\" + arg[2],"w")
+    //获取iyu文件
+    for line in fsys.file.lines("~\" + arg[1])
+    { 
+    	var syntax = tokenizer.split_head(line)
+    	//console.log(table.tostring(syntax))
+    	var code = tojava.head_to_java(syntax)
+    	output_file.write(code + '\n') //' '号里面的字符才会被转义
+    }
+    output_file.close()
+   	
+   	//console.log(output_file)   	
+}
+main()
+//console.pause();
