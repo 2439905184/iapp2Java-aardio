@@ -17,9 +17,10 @@ function main()
     for line in fsys.file.lines("~\" + arg[1])
     { 
     	var syntax = tokenizer.split_head(line)
-    	//console.log(table.tostring(syntax))
+    	
     	var code = tojava.head_to_java(syntax)
     	output_file.write(code + '\n') //' '号里面的字符才会被转义
+    	console.log("编译 >>> " + code)
     }
     output_file.close()
    	
