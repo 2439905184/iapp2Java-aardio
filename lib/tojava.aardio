@@ -54,6 +54,12 @@
         	java_code = pre_code + return_var + ");"
         	return java_code	
 		}
+		if(function_name == "loadso")
+		{
+			param_data = function_params[1]
+			java_code = 'static\n{\n System.loadLibrary(' + param_data + ');\n}'
+        	return java_code
+		}
 		else 
 		{
 			var params = string.join(function_params,",")
