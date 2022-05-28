@@ -7,8 +7,9 @@
     //将完整类名和方法名转换为简单方法名
 	function to_simpleMethod(full_method)
 	{
-    	syntax1 = full_method.split(".")
-    	index = len(syntax1)-1 //此处可能不需要-1
+    	var syntax1 = string.split(full_method,"<.>")
+    	//console.log(table.tostring(syntax1))
+    	var index = table.len(syntax1)
     	simple_name = syntax1[index]
     	return simple_name
     }
@@ -69,6 +70,24 @@
 			param_data = function_params[1]
 			java_code = 'static\n{\n System.loadLibrary(' + param_data + ');\n}'
         	return java_code
+		}
+		//javanew(赋值变量, 类型)
+    	//javanew(赋值变量, "完整类名和方法名", "参数类型", "参数")
+		if(function_name == "javanew")
+		{
+			//完整类名
+			raw_return_var = function_params[2]
+
+			if(params_length == 4)
+			{
+				param_type = function_params[3]
+            	param_data = function_params[4]
+            	class_name = to_simpleMethod(string.trim(raw_return_var,'""'))
+            	syntax_var = class_name + " " + return_var + " = "
+            	syntax_body = "new " + class_name + "(" + param_data + ")"
+            	java_code = syntax_var + syntax_body + ";"
+			}
+			return java_code;
 		}
 		else 
 		{
