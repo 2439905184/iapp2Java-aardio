@@ -47,6 +47,13 @@
         	java_code = 'startActivity(new Intent(this,'+ param_data + '));'
         	return java_code	
 		}
+		if(function_name == "uit")
+		{
+			return_var = function_params[1]
+			pre_code = "startActivity("
+        	java_code = pre_code + return_var + ");"
+        	return java_code	
+		}
 		else 
 		{
 			var params = string.join(function_params,",")
