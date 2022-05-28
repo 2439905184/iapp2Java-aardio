@@ -3,6 +3,16 @@
     import console;
     import table;
     import string;
+    
+    //将完整类名和方法名转换为简单方法名
+	function to_simpleMethod(full_method)
+	{
+    	syntax1 = full_method.split(".")
+    	index = len(syntax1)-1 //此处可能不需要-1
+    	simple_name = syntax1[index]
+    	return simple_name
+    }
+    
 	function head_to_java(syntax_data)
 	{
 		function_name = syntax_data['function_name']
