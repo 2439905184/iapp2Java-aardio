@@ -26,5 +26,11 @@
 			}
 			return java_code
 		}
+		if(function_name == "syso")
+		{
+			param_data  = function_params[1]
+        	java_code = "System.out.println(" + param_data + ");"
+        	return java_code
+		}
 	}
 }
