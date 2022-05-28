@@ -6,8 +6,6 @@ import tokenizer;
 import tojava;
 
 console.setTitle("iapp2Java-compiler");
-/*var result = tokenizer.split_head("a(1,2,3,4)")
-console.log(table.tostring(result))*/
 function main()
 {
     var arg = _ARGV
@@ -27,4 +25,3 @@ function main()
    	//console.log(output_file)   	
 }
 main()
-//console.pause();
