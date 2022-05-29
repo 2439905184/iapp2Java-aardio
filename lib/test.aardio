@@ -1,0 +1,21 @@
+﻿namespace test
+{
+    //遍历字符串
+    import console;
+    import string;
+    var name = "//abcde"
+    var a = string.split(name)
+    var chars = ""
+	for(index in a)
+	{
+		chars += a[index]
+		console.log(chars)
+		if(chars == "//")
+		{
+			break
+		}
+		
+	}
+	console.pause()		
+}
+

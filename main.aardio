@@ -14,6 +14,24 @@ function main()
     //获取iyu文件
     for line in fsys.file.lines("~\" + arg[1])
     { 
+        //判断注释
+        var meet_zhushi = false
+        var chars = ""
+        var char_array = string.split(line)
+        for(index in char_array)
+        {
+            chars += char_array[index]
+            if(chars == "//")
+            {
+                meet_zhushi = true
+            	break	
+            }
+        }
+        if(meet_zhushi)
+        {
+            console.log("遇到注释，跳过此行")
+        	continue	
+        }
     	var syntax = tokenizer.split_head(line)
     	
     	var code = tojava.head_to_java(syntax)
