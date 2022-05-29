@@ -175,6 +175,20 @@
         	}
            	return java_code
 		}
+		//修改java变量值 javass(赋值变量，new出来的java对象，类，"变量名称"，"变量值")
+    	if(function_name == "javass")
+    	{
+        	return_var = function_params[1]
+        	object_name = function_params[2]
+        	class_name = function_params[3]
+        	param_var = string.trim(function_params[4],'""')
+        	param_var_value = function_params[5]
+        	syntax1 = class_name + " " + return_var + " = "
+        	syntax2 = object_name + "." + param_var + " = " + tostring(param_var_value)
+        	java_code = syntax1 + syntax2 + ";"
+        	print(param_var_value)
+        	return java_code
+        }
 		else 
 		{
 			var params = string.join(function_params,",")
