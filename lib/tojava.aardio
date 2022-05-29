@@ -147,6 +147,34 @@
         	java_code = return_var + " = " + param_class + "." + param_method + "(" + param + ");"
         	return java_code
 		}
+		if(function_params == "javags")
+		{
+			return_var = function_params[1]
+			param1 = function_params[2]
+			param_class = function_params[3]
+			param_var = string.trim(function_params[4],'""')
+			if(param1 != "null")
+			{
+				visit_type = "NotStatic"
+			}
+			else
+			{
+				visit_type = "Static"
+			}			
+			if(visit_type == "Static")
+			{
+            	syntax1 = return_var + " = "
+            	syntax2 = param_class + "." + param_var + ";"
+            	java_code = syntax1 + syntax2
+            }
+        	if(visit_type == "NotStatic")
+        	{
+        		 syntax1 = return_var + " = "
+            	syntax2 = param1 + "." + param_var + ";"
+            	java_code = syntax1 + syntax2
+        	}
+           	return java_code
+		}
 		else 
 		{
 			var params = string.join(function_params,",")
