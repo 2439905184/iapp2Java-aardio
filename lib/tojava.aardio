@@ -189,6 +189,17 @@
         	print(param_var_value)
         	return java_code
         }
+        //fd(a,"%abc.zip")
+        if(function_name == "fd")
+        {
+        	file = function_params[1]
+        	return_var = function_params[2]
+        	syntax_var = "boolean " + return_var + " = "
+        	syntax_file = "File file = new File(" + file + ");" + '\n'
+        	syntax_file_del = syntax_file + "file.delete();"
+        	java_code = "//请把%号自行转换成绝对路径（安卓）"+ syntax_file_del
+        	return java_code	
+        }
 		else 
 		{
 			var params = string.join(function_params,",")
