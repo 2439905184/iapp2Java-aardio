@@ -41,6 +41,27 @@
         }*/
     	return real_params
 	}
+	function cls()
+	{
+		if(params_length == 2)
+		{
+			class_name = function_params[1]
+            return_var = function_params[2]
+            syntax1 = "Class " + return_var + " = "
+            syntax2 = "getClass().forName(" + class_name +")"
+            java_code = syntax1 + syntax2 + ";"
+		}
+		if(params_length == 3)
+		{
+			jar = function_params[1]
+            class_name = function_params[2]
+            return_var = function_params[3]
+            syntax1 = "Class " + return_var + " = "
+            syntax2 = "getClass().forName(" + class_name +")"
+            java_code = syntax1 + syntax2 + ";"
+		}
+		return java_code
+	}
 	function head_to_java(syntax_data)
 	{
 		function_name = syntax_data['function_name']
@@ -48,24 +69,7 @@
 		params_length = syntax_data['params_length']
 		if(function_name == "cls")
 		{
-			if(params_length == 2)
-			{
-				class_name = function_params[1]
-            	return_var = function_params[2]
-            	syntax1 = "Class " + return_var + " = "
-            	syntax2 = "getClass().forName(" + class_name +")"
-            	java_code = syntax1 + syntax2 + ";"
-			}
-			if(params_length == 3)
-			{
-				jar = function_params[1]
-            	class_name = function_params[2]
-            	return_var = function_params[3]
-            	syntax1 = "Class " + return_var + " = "
-            	syntax2 = "getClass().forName(" + class_name +")"
-            	java_code = syntax1 + syntax2 + ";"
-			}
-			return java_code
+			return cls()	
 		}
 		if(function_name == "syso")
 		{
