@@ -13,7 +13,34 @@
     	simple_name = syntax1[index]
     	return simple_name
     }
-    
+    //从三开始的奇数为实参 当出现多个参数时，取实参操作
+    //todo
+    function get_real_params(tokenzier_params)
+    {
+    	real_params = {}
+    	/*for(index,name in enumerate(tokenzier_params))
+    	{
+        	if(index %2 == 1 and index !=1)
+        	{
+            	//#print(name)
+            	real_params.append(name)
+    		}
+    	}
+    	return real_params*/
+    }
+    //从三开始的偶数为实参 当出现多个参数时，取实参操作
+    //todo
+	function get_oushu_real_params(tokenzier_params)
+	{
+    	real_params = {}
+    	/*for(index,name in enumerate(tokenzier_params))
+    	{
+        	if index %2 == 0 and index !=0 and index !=2:
+            	#print(name)
+            	real_params.append(name)
+        }*/
+    	return real_params
+	}
 	function head_to_java(syntax_data)
 	{
 		function_name = syntax_data['function_name']
