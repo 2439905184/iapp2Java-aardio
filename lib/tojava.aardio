@@ -231,6 +231,50 @@
         	java_code = "//请把%号自行转换成绝对路径（安卓）"+ syntax_file_del
         	return java_code	
         }
+        //java(赋值变量, 类, "完整类名和方法名")
+    	//java(赋值变量, 类, "完整类名和方法名", "参数类型", "参数")
+        if(function_name == "java")
+        {
+        	return_var = function_params[1]
+        	class_name = function_params[2]
+        	method = function_params[3]
+        	if(params_length == 3)
+        	{
+        		simple_name = to_simpleMethod(string.trim('""'))
+        		syntax1 = return_var + " = ";
+        		syntax2 = class_name + "." + simple_name + "()"
+        		java_code = syntax1 + syntax2 + ";" 	
+        	}
+        	if(params_length == 5)
+        	{
+        		param_type = function_params[4]
+            	param_data = function_params[5]
+            	if(string.trim(return_var,'""') != "null")
+            	{
+                	simple_name = to_simpleMethod(string.trim(method,'"'))
+                	syntax_class = class_name
+                	syntax_var = class_name + " " + return_var + " = " 
+                	syntax_body = class_name + "." + simple_name + "(" + param_data +")"
+                	java_code = syntax_var + syntax_body + ";"
+                }
+            	else
+            	{
+            		simple_name = to_simpleMethod(string.trim(method,'"'))
+                	syntax = class_name + "." + simple_name + "()"
+                	java_code = syntax + ";"
+            	}
+            	if(params_length > 5)
+            	{
+            		//todo 移植
+            		syntax_var = class_name  + " " + return_var + " = "
+            		syntax_method = class_name + "." + to_simpleMethod(string.trim(method,'""'))
+            		names = get_oushu_real_params(function_params)
+            		//syntax_body = "(" + ','.join(names) + ")"
+            		java_code = syntax_var + syntax_method + syntax_body + ";"
+        		}
+        	}
+        	return java_code
+        }
 		else 
 		{
 			var params = string.join(function_params,",")
