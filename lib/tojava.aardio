@@ -58,6 +58,52 @@
         	java_code = 'startActivity(new Intent(this,'+ param_data + '));'
         	return java_code	
 		}
+		//sit(赋值变量, "方法","属性值")
+    	//sit对应Intent类 可用方法：setAction(),setType(String type),putExtra(String,CharSequence)
+		if(function_name == "sit")
+		{
+			return_var = function_params[1]
+			prop_flag = string.trim(function_params[2],'""')
+			param_data = function_params[3]
+			
+			pre_code = "Intent " + return_var + ' = new Intent();\n';
+			if(params_length == 4)
+			{
+				param_data2 = function_params[4]
+				//todo	
+			}
+			if(prop_flag == "action")
+			{
+				syntax_func = "setAction"
+				syntax_body = return_var + "." + syntax_func + "(" + param_data + ")"
+				java_code = pre_code + syntax_body
+			}
+			if(prop_flag == "type")
+			{
+				syntax_func = "setType"
+				syntax_body =  return_var + "." + syntax_func + "(" + param_data + ");"	
+				java_code = pre_code + syntax_body
+			}
+			if(prop_flag == "extra")
+			{
+				syntax_func = "putExtra"
+            	syntax_body = return_var + "." + syntax_func + "(" + param_data + "," + param_data2 + ");"
+            	java_code = pre_code + syntax_body
+			}
+			if(prop_flag == "classname")
+			{
+				syntax_func = "setClassName"
+				syntax_class = "Intent"
+            	syntax_var = syntax_class + " " + return_var + " = "
+            	syntax_body = return_var + "." +  syntax_func + "(" + param_data + "," + param_data2 + ")"
+            	java_code = syntax_var  + syntax_body+ ";"	
+			}
+			if(prop_flag == "flags")
+			{
+				//todo	
+			}
+			return java_code
+		}
 		if(function_name == "uit")
 		{
 			return_var = function_params[1]
