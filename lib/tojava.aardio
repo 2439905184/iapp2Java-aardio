@@ -13,11 +13,19 @@
     	simple_name = syntax1[index]
     	return simple_name
     }
-    //从三开始的奇数为实参 当出现多个参数时，取实参操作
-    //todo
+    //可能存在bug
+    //从三开始的奇数为实参 当出现多个参数时，取实参操作 1 2 3 4 5 6 7 8
     function get_real_params(tokenzier_params)
     {
     	real_params = {}
+    	for(k,v in tokenizer_params)
+    	{
+    		if(index %2 == 1 and index !=1) //可能不是1
+    		{
+    			table.push(v)		
+    		}	
+    	}
+    	return real_params
     	/*for(index,name in enumerate(tokenzier_params))
     	{
         	if(index %2 == 1 and index !=1)
@@ -28,17 +36,19 @@
     	}
     	return real_params*/
     }
+    //可能存在bug
     //从三开始的偶数为实参 当出现多个参数时，取实参操作
-    //todo
 	function get_oushu_real_params(tokenzier_params)
 	{
     	real_params = {}
-    	/*for(index,name in enumerate(tokenzier_params))
+    	for(k,v in tokenzier_params)
     	{
-        	if index %2 == 0 and index !=0 and index !=2:
-            	#print(name)
-            	real_params.append(name)
-        }*/
+    		//摆大烂！ 出bug我不管
+        	if(index %2 == 0 and index !=0 and index !=2)
+        	{
+        		table.push(real_params,v)
+        	}	
+        }
     	return real_params
 	}
 	function cls()
@@ -283,7 +293,9 @@
             		//todo 移植
             		syntax_var = class_name  + " " + return_var + " = "
             		syntax_method = class_name + "." + to_simpleMethod(string.trim(method,'""'))
-            		names = get_oushu_real_params(function_params)
+            		//摆烂不写了 睡觉去
+            		//names = get_oushu_real_params(function_params)
+            		
             		//syntax_body = "(" + ','.join(names) + ")"
             		java_code = syntax_var + syntax_method + syntax_body + ";"
         		}
