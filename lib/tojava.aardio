@@ -154,7 +154,12 @@
 		{
 			//完整类名
 			raw_return_var = function_params[2]
-
+			if(params_length == 2)
+			{
+				syntax1 = return_var + " = new "
+				syntax2 = raw_return_var + "()"
+				java_code = syntax1 + syntax2	
+			}
 			if(params_length == 4)
 			{
 				param_type = function_params[3]
@@ -163,6 +168,16 @@
             	syntax_var = class_name + " " + return_var + " = "
             	syntax_body = "new " + class_name + "(" + param_data + ")"
             	java_code = syntax_var + syntax_body + ";"
+			}
+			//todo 移植
+			if(params_length > 4)
+			{
+				syntax_class = to_simpleMethod(string.trim(raw_return_var,'""'))
+            	syntax_var = syntax_class + " " + return_var + " = "
+            	//todo
+            	//names = get_real_params(function_params)
+            	//syntax_body = "new " + to_simpleMethod(syntax_class) + "(" + ','.join(names) + ")"
+            	//java_code = syntax_var  + syntax_body + ";"
 			}
 			return java_code;
 		}
