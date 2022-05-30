@@ -72,37 +72,35 @@
 		}
 		return java_code
 	}
-	function head_to_java(syntax_data)
+	function syso()
 	{
-		function_name = syntax_data['function_name']
-		function_params = syntax_data['function_params']
-		params_length = syntax_data['params_length']
-		if(function_name == "cls")
-		{
-			return cls()	
-		}
-		if(function_name == "syso")
-		{
-			param_data  = function_params[1]
-        	java_code = "System.out.println(" + param_data + ");"
-        	return java_code
-		}
-		if(function_name == "tw")
-		{
-			param_data = function_params[1]
-        	java_code = "Toast.makeText(this," + param_data + ",Toast.LENGTH_SHORT)"+".show();"
-        	return java_code
-		}
-		if(function_name == "uigo")
-		{
-			param_data = function_params[1]
-        	java_code = 'startActivity(new Intent(this,'+ param_data + '));'
-        	return java_code	
-		}
-		//sit(赋值变量, "方法","属性值")
-    	//sit对应Intent类 可用方法：setAction(),setType(String type),putExtra(String,CharSequence)
-		if(function_name == "sit")
-		{
+		param_data  = function_params[1]
+        java_code = "System.out.println(" + param_data + ");"
+        return java_code
+	}
+	function tw()
+	{
+		param_data = function_params[1]
+        java_code = "Toast.makeText(this," + param_data + ",Toast.LENGTH_SHORT)"+".show();"
+        return java_code	
+	}
+	function uigo()
+	{
+		param_data = function_params[1]
+        java_code = 'startActivity(new Intent(this,'+ param_data + '));'
+        return java_code	
+	}
+	function uit()
+	{
+		return_var = function_params[1]
+		pre_code = "startActivity("
+        java_code = pre_code + return_var + ");"
+        return java_code	
+	}
+	//sit(赋值变量, "方法","属性值")
+    //sit对应Intent类 可用方法：setAction(),setType(String type),putExtra(String,CharSequence)
+	function sit()
+	{
 			return_var = function_params[1]
 			prop_flag = string.trim(function_params[2],'""')
 			param_data = function_params[3]
@@ -144,25 +142,18 @@
 				//todo	
 			}
 			return java_code
-		}
-		if(function_name == "uit")
-		{
-			return_var = function_params[1]
-			pre_code = "startActivity("
-        	java_code = pre_code + return_var + ");"
-        	return java_code	
-		}
-		if(function_name == "loadso")
-		{
-			param_data = function_params[1]
-			java_code = 'static\n{\n System.loadLibrary(' + param_data + ');\n}'
-        	return java_code
-		}
-		//javanew(赋值变量, 类型)
-    	//javanew(赋值变量, "完整类名和方法名", "参数类型", "参数")
-		if(function_name == "javanew")
-		{
-			//完整类名
+	}
+	function loadso()
+	{
+		param_data = function_params[1]
+		java_code = 'static\n{\n System.loadLibrary(' + param_data + ');\n}'
+        return java_code
+	}
+	//javanew(赋值变量, 类型)
+    //javanew(赋值变量, "完整类名和方法名", "参数类型", "参数")
+	function javanew()
+	{
+		//完整类名
 			raw_return_var = function_params[2]
 			if(params_length == 2)
 			{
@@ -190,10 +181,10 @@
             	//java_code = syntax_var  + syntax_body + ";"
 			}
 			return java_code;
-		}
-		//javax(赋值变量, "参数", "第二个实参的类型", "方法名", "方法参数类型", "方法参数")
-		if(function_name == "javax")
-		{
+	}
+	//javax(赋值变量, "参数", "第二个实参的类型", "方法名", "方法参数类型", "方法参数")
+	function javax()
+	{
 			return_var = function_params[1]
         	param_data2 = function_params[2]
         	param_class = function_params[3]
@@ -202,9 +193,9 @@
         	param = function_params[6]
         	java_code = return_var + " = " + param_class + "." + param_method + "(" + param + ");"
         	return java_code
-		}
-		if(function_params == "javags")
-		{
+	}
+	function javags()
+	{
 			return_var = function_params[1]
 			param1 = function_params[2]
 			param_class = function_params[3]
@@ -230,11 +221,12 @@
             	java_code = syntax1 + syntax2
         	}
            	return java_code
-		}
-		//修改java变量值 javass(赋值变量，new出来的java对象，类，"变量名称"，"变量值")
-    	if(function_name == "javass")
-    	{
-        	return_var = function_params[1]
+	}
+	//修改java变量值 
+	//javass(赋值变量，new出来的java对象，类，"变量名称"，"变量值")
+	function javass()
+	{
+			return_var = function_params[1]
         	object_name = function_params[2]
         	class_name = function_params[3]
         	param_var = string.trim(function_params[4],'""')
@@ -244,23 +236,23 @@
         	java_code = syntax1 + syntax2 + ";"
         	print(param_var_value)
         	return java_code
-        }
-        //fd(a,"%abc.zip")
-        if(function_name == "fd")
-        {
-        	file = function_params[1]
+	}
+	//fd(a,"%abc.zip")
+	function fd()
+	{
+			file = function_params[1]
         	return_var = function_params[2]
         	syntax_var = "boolean " + return_var + " = "
         	syntax_file = "File file = new File(" + file + ");" + '\n'
         	syntax_file_del = syntax_file + "file.delete();"
         	java_code = "//请把%号自行转换成绝对路径（安卓）"+ syntax_file_del
         	return java_code	
-        }
-        //java(赋值变量, 类, "完整类名和方法名")
-    	//java(赋值变量, 类, "完整类名和方法名", "参数类型", "参数")
-        if(function_name == "java")
-        {
-        	return_var = function_params[1]
+	}
+	//java(赋值变量, 类, "完整类名和方法名")
+    //java(赋值变量, 类, "完整类名和方法名", "参数类型", "参数")
+	function java()
+	{
+			return_var = function_params[1]
         	class_name = function_params[2]
         	method = function_params[3]
         	if(params_length == 3)
@@ -301,12 +293,77 @@
         		}
         	}
         	return java_code
+	}
+	function head_to_java(syntax_data)
+	{
+		function_name = syntax_data['function_name']
+		function_params = syntax_data['function_params']
+		params_length = syntax_data['params_length']
+		if(function_name == "cls")
+		{
+			return cls()	
+		}
+		
+		if(function_name == "syso")
+		{
+			return syso()
+		}
+		
+		if(function_name == "tw")
+		{
+			return tw()
+		}
+		if(function_name == "uigo")
+		{
+			return uigo()
+		}
+		
+		if(function_name == "sit")
+		{
+			return sit()
+		}
+		
+		if(function_name == "uit")
+		{
+			return uit()
+		}
+		if(function_name == "loadso")
+		{
+			return loadso()
+		}
+		
+		if(function_name == "javanew")
+		{
+			return javanew()	
+		}
+		
+		if(function_name == "javax")
+		{
+			return javax()
+		}
+		if(function_params == "javags")
+		{
+			return javags()
+		}
+		
+    	if(function_name == "javass")
+    	{
+        	return javass()
+        }
+        
+        if(function_name == "fd")
+        {
+        	return fd()
+        }
+       
+        if(function_name == "java")
+        {
+        	return java()
         }
 		else 
 		{
 			var params = string.join(function_params,",")
 			return "暂时不支持的函数,iyu分词码: "+ tostring(function_name)+" " + params + ";"
 		}
-		
 	}
 }
